@@ -1,0 +1,34 @@
+<template>
+    <header class="bg-white px-12 py-5">
+        <div class="flex justify-between items-center max-w-screen-2xl container mx-auto">
+            <div class="flex items-center space-x-3">
+                <img src="../assets/logo.svg" alt="metsenat-logo" class="w-auto h-6">
+                <img src="../assets/logoText.svg" alt="metsenat-logo-text" class="w-auto h-6">
+            </div>
+            <div class="flex items-center items-center space-x-11">
+                <div class="relative rounded px-2 py-2 items-center bg-gray-200">
+                    <h3 class="px-4 pr-12">Shohrux</h3>
+                    <div class="absolute right-1 top-1 rounded bg-[#00AE69] p-1 items-center">
+                        <img src="../components/icons/user.svg" alt="user-logo" class="">
+                    </div>
+                </div>
+                <ArrowRightOnRectangleIcon class="w-8 h-8 text-gray-400 cursor-pointer hover:text-primary duration-500"/>
+            </div>
+        </div>
+
+
+    </header>
+</template>
+
+<script>
+import {ArrowRightOnRectangleIcon, UserIcon} from '@heroicons/vue/24/outline'
+
+export default {
+    name: "TheHeader",
+    components: {ArrowRightOnRectangleIcon, UserIcon}
+}
+</script>
+
+<style scoped>
+
+</style>

@@ -1,15 +1,26 @@
+<template>
+    <div class="w-full min-h-screen overflow-hidden bg-back">
+        <the-header />
+        <the-navbar />
+        <RouterView />
+    </div>
+</template>
+
 <script>
-import { BeakerIcon } from '@heroicons/vue/24/solid'
+import LoginPage from "./views/LoginPage.vue";
+import TheHeader from "./components/TheHeader.vue";
+import TheNavbar from "./components/TheNavbar.vue";
 export default {
-    components: {BeakerIcon}
+    components: {TheNavbar, TheHeader, LoginPage}
 }
 </script>
 
-<template>
-    <h1 class="text-blue-500">Hello</h1>
-    <BeakerIcon class="w-6 h-6"/>
-</template>
-
-<style scoped>
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: DM Serif Display, sans-serif;
+}
 
 </style>
