@@ -6,9 +6,9 @@
         <td class="text-center text-[15px] text-[#1D1D1F] py-6">{{ thirdBody }}</td>
         <td class="text-center text-[15px] text-[#1D1D1F] py-6">
             {{ fourthBody }}
-            <span class="text-gray-400"> UZS</span></td>
+            <span class="text-gray-400"> {{ currency }}</span></td>
         <td class="text-center text-[15px] text-[#1D1D1F] py-6">{{ fifthBody }}
-            <span class="text-gray-400">UZS</span></td>
+            <span class="text-gray-400">{{ currency }}</span></td>
         <td class="text-center text-[15px] text-[#1D1D1F] py-6">{{ sixthBody }}</td>
         <td :class="style" class="text-center text-[15px] text-[#1D1D1F] py-6">{{ seventhBody }}</td>
         <td class="text-center rounded-r-lg">
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-    name: "AppTableBody",
+    name: "AppSponsorsTableBody",
     props: {
         firstBody: {type: Number},
         secondBody: {type: String},
@@ -32,6 +32,7 @@ export default {
         fifthBody: {type: String},
         sixthBody: {type: String},
         seventhBody: {type: String},
+        currency: {type: String},
 
         style: {type: String}
     }

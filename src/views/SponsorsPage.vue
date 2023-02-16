@@ -1,7 +1,7 @@
 <template>
     <div class="px-12 py-10">
         <table class="w-full table-auto border-separate border-spacing-y-3">
-            <app-table-head
+            <app-sponsors-table-head
                 :first-head="'#'"
                 :second-head="'f.i.sh'"
                 :third-head="'Tel.Raqami'"
@@ -12,7 +12,7 @@
                 :eighth-head="'Amallar'"
 
             />
-            <app-table-body
+            <app-sponsors-table-body
                 v-for="(sponsor, index) in sponsors"
                 :key="index"
                 :first-body="index + 1"
@@ -22,6 +22,7 @@
                 :fifth-body="sponsor.spentAmount"
                 :sixth-body="sponsor.date"
                 :seventh-body="sponsor.status"
+                :currency="'UZS'"
                 :style="sponsor.status === 'Yangi' ? 'text-primary'
                     : sponsor.status === 'Moderatsiyada' ? 'text-amber-500'
                     : sponsor.status === 'Tasdiqlangan' ? 'text-green-500'
@@ -48,16 +49,16 @@
 
 <script>
 import {ChevronLeftIcon, ChevronRightIcon, EyeIcon} from '@heroicons/vue/24/outline'
-import AppTableHead from "../components/AppTableHead.vue";
-import AppTableBody from "../components/AppTableBody.vue";
 import AppPagination from "../components/AppPagination.vue";
+import AppSponsorsTableHead from "../components/AppSponsorsTableHead.vue";
+import AppSponsorsTableBody from "../components/AppSponsorsTableBody.vue";
 
 export default {
     name: "SponsorsPage",
     components: {
+        AppSponsorsTableBody,
+        AppSponsorsTableHead,
         AppPagination,
-        AppTableBody,
-        AppTableHead,
         EyeIcon,
         ChevronLeftIcon,
         ChevronRightIcon

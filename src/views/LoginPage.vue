@@ -28,7 +28,7 @@
                                 />
                             </div>
                             <the-captcha/>
-                            <app-button>Kirish</app-button>
+                            <app-button :class="'px-6 py-4 rounded-lg'">Kirish</app-button>
                         </div>
                     </div>
                 </div>

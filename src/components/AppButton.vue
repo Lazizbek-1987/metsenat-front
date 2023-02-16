@@ -1,6 +1,6 @@
 <template>
-    <div class="py-4 text-center border-2 border-primary bg-white text-primary cursor-pointer hover:bg-primary
-         rounded-lg text-primary hover:text-white duration-500"
+    <div class="text-center border-2 border-primary bg-white text-primary cursor-pointer hover:bg-primary text-primary
+         hover:text-white duration-500 items-center"
     >
         <button class="text-lg font-bold tracking-widest">
             <slot></slot>

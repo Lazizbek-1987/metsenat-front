@@ -1,10 +1,10 @@
 <template>
     <header class="bg-white px-12 py-5">
         <div class="flex justify-between items-center max-w-screen-2xl container mx-auto">
-            <div class="flex items-center space-x-3">
+            <router-link to="/" class="flex items-center space-x-3">
                 <img src="../assets/logo.svg" alt="metsenat-logo" class="w-auto h-6">
                 <img src="../assets/logoText.svg" alt="metsenat-logo-text" class="w-auto h-6">
-            </div>
+            </router-link>
             <div class="flex items-center items-center space-x-11">
                 <div class="relative rounded px-2 py-2 items-center bg-gray-200">
                     <h3 class="px-4 pr-12">Shohrux</h3>

@@ -4,7 +4,7 @@
         <th scope="col" class="text-center text-[12px] text-gray-500 font-thin tracking-widest uppercase">
             {{ firstHead }}
         </th>
-        <th scope="col" class="text-center text-[12px] text-gray-500 font-thin tracking-widest uppercase">
+        <th scope="col" class="text-start text-[12px] text-gray-500 font-thin tracking-widest uppercase">
             {{ secondHead }}
         </th>
         <th scope="col" class="text-center text-[12px] text-gray-500 font-thin tracking-widest uppercase">
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-    name: "AppTableHead",
+    name: "AppSponsorsTableHead",
     props: {
         firstHead: {type: String},
         secondHead: {type: String},
