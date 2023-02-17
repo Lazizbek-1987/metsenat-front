@@ -1,11 +1,11 @@
 <template>
-    <div class="py-2 text-center border border-primary bg-white text-primary cursor-pointer hover:bg-primary
-         text-primary hover:text-white duration-500"
+    <router-link
+        :to="link"
+        class="py-2 text-center border border-primary bg-white text-primary cursor-pointer duration-300 px-12 text-sm
+        tracking-widest"
     >
-        <router-link :to="link" class="px-12 text-sm tracking-widest">
-            <slot></slot>
-        </router-link>
-    </div>
+        <slot></slot>
+    </router-link>
 </template>
 
 <script>
@@ -18,7 +18,10 @@ export default {
 </script>
 
 <style scoped>
-.router-link-active .router-link-exact-active {
-    color: red !important;
+.router-link-active,
+.router-link-exact-active {
+    background-color: #2E5BFF;
+    cursor: pointer;
+    color: white;
 }
 </style>

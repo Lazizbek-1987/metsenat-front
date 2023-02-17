@@ -1,5 +1,6 @@
 <template>
-    <div class="px-12 py-10">
+    <the-navbar />
+    <div class="px-12 py-12">
         <table class="w-full table-auto border-separate border-spacing-y-3">
             <app-sponsors-table-head
                 :first-head="'#'"
@@ -27,6 +28,7 @@
                     : sponsor.status === 'Moderatsiyada' ? 'text-amber-500'
                     : sponsor.status === 'Tasdiqlangan' ? 'text-green-500'
                     : 'text-gray-400'"
+                :link="'/sponsor-info'"
             />
         </table>
         <div class="flex justify-between items-center mt-7">
@@ -52,10 +54,12 @@ import {ChevronLeftIcon, ChevronRightIcon, EyeIcon} from '@heroicons/vue/24/outl
 import AppPagination from "../components/AppPagination.vue";
 import AppSponsorsTableHead from "../components/AppSponsorsTableHead.vue";
 import AppSponsorsTableBody from "../components/AppSponsorsTableBody.vue";
+import TheNavbar from "@/components/TheNavbar.vue";
 
 export default {
     name: "SponsorsPage",
     components: {
+        TheNavbar,
         AppSponsorsTableBody,
         AppSponsorsTableHead,
         AppPagination,

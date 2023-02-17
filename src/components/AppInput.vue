@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <div class="space-y-2">
+        <label :for="id" class="text-[#1D1D1F]">
+            <slot></slot>
+        </label>
         <input
             :type="type"
             :placeholder="placeholder"
@@ -13,16 +16,9 @@
 export default {
     name: "AppInput",
     props: {
-        type: {
-            type: String,
-            default: 'text'
-        },
-        placeholder: {
-            type: String
-        },
-        id: {
-            id: String
-        }
+        type: {type: String, default: 'text'},
+        placeholder: {type: String},
+        id: {id: String},
     }
 }
 </script>

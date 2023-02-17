@@ -1,7 +1,8 @@
 <template>
-    <div class="px-12 py-10">
+    <the-navbar />
+    <div class="px-12 py-7">
         <div class="flex justify-end pb-7">
-            <app-button :class="'items-center px-6 py-1 rounded'">
+            <app-button>
                 <div class="flex items-center space-x-2">
                     <PlusIcon class="w-5 h-5 stroke-2"/>
                     <router-link to="/add-student" class="text-[14px]">Talaba qo‘shish</router-link>
@@ -56,10 +57,12 @@ import AppPagination from "../components/AppPagination.vue";
 import AppStudentsTableHead from "../components/AppStudentsTableHead.vue";
 import AppStudentsTableBody from "../components/AppStudentsTableBody.vue";
 import AppButton from "../components/AppButton.vue";
+import TheNavbar from "../components/TheNavbar.vue";
 
 export default {
     name: "StudentsPage",
     components: {
+        TheNavbar,
         AppButton,
         AppStudentsTableBody,
         AppStudentsTableHead,

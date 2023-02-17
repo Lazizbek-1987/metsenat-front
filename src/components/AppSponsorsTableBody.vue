@@ -12,10 +12,12 @@
         <td class="text-center text-[15px] text-[#1D1D1F] py-6">{{ sixthBody }}</td>
         <td :class="style" class="text-center text-[15px] text-[#1D1D1F] py-6">{{ seventhBody }}</td>
         <td class="text-center rounded-r-lg">
-            <img
-                src="./icons/eye.svg"
-                class="text-primary w-5 h-5 mx-auto cursor-pointer hover:scale-125 duration-500"
-            />
+            <router-link :to="link">
+                <img
+                    src="./icons/eye.svg"
+                    class="text-primary w-5 h-5 mx-auto cursor-pointer hover:scale-125 duration-500"
+                />
+            </router-link>
         </td>
     </tr>
     </tbody>
@@ -34,7 +36,9 @@ export default {
         seventhBody: {type: String},
         currency: {type: String},
 
-        style: {type: String}
+        style: {type: String},
+
+        link: {type: String}
     }
 }
 </script>

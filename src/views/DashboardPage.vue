@@ -1,4 +1,5 @@
 <template>
+    <the-navbar />
     <div class="px-12 pt-12 pb-7">
         <div class="flex justify-between max-w-screen-2xl container mx-auto">
             <app-sums-info-card
@@ -25,10 +26,11 @@
 
 <script>
 import AppSumsInfoCard from "../components/AppSumsInfoCard.vue";
+import TheNavbar from "@/components/TheNavbar.vue";
 
 export default {
     name: "DashboardPage",
-    components: {AppSumsInfoCard}
+    components: {TheNavbar, AppSumsInfoCard}
 }
 </script>
 

@@ -1,7 +1,6 @@
 <template>
     <div class="w-full min-h-screen overflow-hidden bg-back">
         <the-header />
-        <the-navbar />
         <RouterView />
     </div>
 </template>
@@ -9,9 +8,8 @@
 <script>
 import LoginPage from "./views/LoginPage.vue";
 import TheHeader from "./components/TheHeader.vue";
-import TheNavbar from "./components/TheNavbar.vue";
 export default {
-    components: {TheNavbar, TheHeader, LoginPage}
+    components: {TheHeader, LoginPage}
 }
 </script>
 

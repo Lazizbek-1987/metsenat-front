@@ -19,11 +19,18 @@ const router = createRouter({
       name: 'dashboard',
       component: () => import('../views/DashboardPage.vue')
     },
+
     {
       path: '/sponsors',
       name: 'sponsors',
       component: () => import('../views/SponsorsPage.vue')
     },
+    {
+      path: '/sponsor-info',
+      name: 'sponsor-info',
+      component: () => import('../views/SponsorInfoPage.vue')
+    },
+
     {
       path: '/students',
       name: 'students',

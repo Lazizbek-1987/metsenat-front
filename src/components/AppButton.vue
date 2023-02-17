@@ -1,8 +1,9 @@
 <template>
-    <div class="text-center border-2 border-primary bg-white text-primary cursor-pointer hover:bg-primary text-primary
-         hover:text-white duration-500 items-center"
+    <div
+        class="px-2 md:px-4 items-center text-center text-primary cursor-pointer bg-blue-100 hover:bg-primary
+        rounded hover:text-white duration-500"
     >
-        <button class="text-lg font-bold tracking-widest">
+        <button class="font-bold py-2 tracking-widest items-center">
             <slot></slot>
         </button>
     </div>
