@@ -58,7 +58,6 @@
 <script>
 import {PlusIcon} from '@heroicons/vue/24/outline'
 import AppInput from "../components/AppInput.vue";
-import AppInputLabel from "../components/AppInputLabel.vue";
 import AppSelect from "../components/AppSelect.vue";
 import AppButton from "../components/AppButton.vue";
 import AppGoBackHeader from "@/components/AppGoBackHeader.vue";
@@ -69,7 +68,6 @@ export default {
         AppGoBackHeader,
         AppButton,
         AppSelect,
-        AppInputLabel,
         AppInput,
         PlusIcon,
     },

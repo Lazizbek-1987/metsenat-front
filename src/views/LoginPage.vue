@@ -8,27 +8,25 @@
                         <h1 class="text-2xl text-[#28293D] font-bold">Kirish</h1>
                         <div class="w-96 space-y-6">
                             <div class="space-y-2">
-                                <app-input-label :for-label="'email'">
-                                    LOGIN
-                                </app-input-label>
                                 <app-input
                                     :type="'text'"
                                     :placeholder="'Login'"
                                     :id="'email'"
-                                />
+                                >
+                                    LOGIN
+                                </app-input>
                             </div>
                             <div class="space-y-2">
-                                <app-input-label :for-label="'password'">
-                                    PAROL
-                                </app-input-label>
                                 <app-input
                                     :type="'password'"
                                     :placeholder="'Parol'"
                                     :id="'password'"
-                                />
+                                >
+                                    PAROL
+                                </app-input>
                             </div>
                             <the-captcha/>
-                            <app-button :class="'px-6 py-4 rounded-lg'">Kirish</app-button>
+                            <app-button :class="'px-6 py-2 rounded-lg'">Kirish</app-button>
                         </div>
                     </div>
                 </div>
@@ -42,13 +40,12 @@
 
 import TheLoginHeader from "../components/TheLoginHeader.vue";
 import AppInput from "../components/AppInput.vue";
-import AppInputLabel from "../components/AppInputLabel.vue";
 import AppButton from "../components/AppButton.vue";
 import TheCaptcha from "../components/TheCaptcha.vue";
 
 export default {
     name: "LoginPage",
-    components: {TheCaptcha, AppButton, AppInputLabel, AppInput, TheLoginHeader},
+    components: {TheCaptcha, AppButton, AppInput, TheLoginHeader},
 }
 </script>
 
