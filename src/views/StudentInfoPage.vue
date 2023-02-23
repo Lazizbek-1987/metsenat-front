@@ -75,7 +75,7 @@
             <div class="flex justify-between items-center">
                 <h1 class="text-[16px] md:text-[24px]">Talabaga homiylar</h1>
 
-                <app-button data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                <app-button @click="$store.commit('UPDATE_MODAL')">
                     <div class="flex items-center space-x-1 md:space-x-2">
                         <PlusIcon class="w-4 h-4 md:w-5 md:h-5 stroke-2"/>
                         <span class="text-[10px] md:text-[14px]">Homiy qo‘shish</span>
@@ -101,7 +101,11 @@
 
         </div>
         <!-- Modal content start-->
-        <app-modal :title="'Homiy qo‘shish'">
+        <app-modal
+            @closemodal="$store.commit('UPDATE_MODAL')"
+            :is-open="$store.state.isOpenModal"
+            :title="'Homiy qo‘shish'"
+        >
             <div class="space-y-7">
                 <app-select
                     :id="'name'"
@@ -118,7 +122,7 @@
                 </app-input>
 
                 <div class="border-b"></div>
-                <div class="flex justify-end" data-bs-dismiss="modal">
+                <div class="flex justify-end">
                     <app-button>
                         <div class="flex items-center space-x-1">
                             <PlusIcon class="w-4 h-4 stroke-2"/>
