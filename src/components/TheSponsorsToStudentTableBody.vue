@@ -13,49 +13,32 @@
             <span class="text-gray-400"> {{ currency }}</span>
         </td>
         <td
-            data-bs-toggle="modal" data-bs-target="#exampleModalCenter"
+            @click="openModal()"
             class="text-center border-l-0 border-2 border-blue-200 rounded-r-lg">
             <PencilSquareIcon class="w-6 h-6 cursor-pointer mx-auto text-primary"/>
         </td>
     </tr>
     </tbody>
 
-    <app-modal :title="'Homiyni tahrirlash'">
-        <div class="space-y-7">
-            <app-select
-                :id="'name'"
-                :title="'F.I.Sh. (Familiya Ism Sharifingiz)'"
-            >
-                Homiyni tanlang
-            </app-select>
-            <app-input
-                :id="'sum'"
-                :placeholder="'Summani kiriting'"
-                :type="'number'"
-            >
-                Ajratilingan summa
-            </app-input>
+<!--    <app-modal :title="'Homiyni tahrirlash'">-->
+<!--        <div class="space-y-7">-->
+<!--            <app-select-->
+<!--                :id="'name'"-->
+<!--                :title="'F.I.Sh. (Familiya Ism Sharifingiz)'"-->
+<!--            >-->
+<!--                Homiyni tanlang-->
+<!--            </app-select>-->
+<!--            <app-input-->
+<!--                :id="'sum'"-->
+<!--                :placeholder="'Summani kiriting'"-->
+<!--                :type="'number'"-->
+<!--            >-->
+<!--                Ajratilingan summa-->
+<!--            </app-input>-->
 
-            <div class="border-b"></div>
-
-            <!-- Modal content start-->
-            <div class="flex justify-end space-x-4" data-bs-dismiss="modal">
-                <app-button class="bg-red-100 text-red-500 hover:bg-red-500">
-                    <div class="flex items-center space-x-1">
-                        <TrashIcon class="w-4 h-4 stroke-2"/>
-                        <button class="text-[14px]">Homiyni o‘chirish</button>
-                    </div>
-                </app-button>
-                <app-button>
-                    <div class="flex items-center space-x-1">
-                        <FolderArrowDownIcon class="w-4 h-4 stroke-2"/>
-                        <button class="text-[14px]">Saqlash</button>
-                    </div>
-                </app-button>
-            </div>
-            <!-- Modal content end-->
-        </div>
-    </app-modal>
+<!--            <div class="border-b"></div>-->
+<!--        </div>-->
+<!--    </app-modal>-->
 </template>
 
 <script>
@@ -74,6 +57,11 @@ export default {
         allocatedSum: {type: String},
         currency: {type: String},
         link: {type: String},
+    },
+    methods: {
+        openModal() {
+            this.$emit('openSponsor')
+        }
     }
 }
 </script>

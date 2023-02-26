@@ -15,8 +15,9 @@
             />
             <app-sponsors-table-body
                 v-for="(sponsor, index) in sponsors"
-                :key="index"
+                :key="sponsor.id"
                 :first-body="index + 1"
+                :id="sponsor.id"
                 :second-body="sponsor.fullName"
                 :third-body="sponsor.phoneNumber"
                 :fourth-body="sponsor.sponsorshipAmount"
@@ -28,7 +29,6 @@
                     : sponsor.status === 'Moderatsiyada' ? 'text-amber-500'
                     : sponsor.status === 'Tasdiqlangan' ? 'text-green-500'
                     : 'text-gray-400'"
-                :link="'/sponsor-info'"
             />
         </table>
         <div class="flex justify-between items-center mt-7">
@@ -71,6 +71,7 @@ export default {
         return {
             sponsors: [
                 {
+                    id: 1,
                     fullName: 'Alimov Abror Xabibullayevich',
                     phoneNumber: '+99899 973-72-60',
                     sponsorshipAmount: '30 000 000',
@@ -79,6 +80,7 @@ export default {
                     status: 'Yangi'
                 },
                 {
+                    id: 2,
                     fullName: 'Saimov Rustam Saimjonovich',
                     phoneNumber: '+99899 973-72-60',
                     sponsorshipAmount: '1 000 000',
@@ -87,6 +89,7 @@ export default {
                     status: 'Moderatsiyada'
                 },
                 {
+                    id: 3,
                     fullName: 'Sanginov Otabek Muratovich',
                     phoneNumber: '+99899 973-72-60',
                     sponsorshipAmount: '5 000 000',
@@ -95,6 +98,7 @@ export default {
                     status: 'Tasdiqlangan'
                 },
                 {
+                    id: 4,
                     fullName: 'Nazarov Sanjar Olimovich',
                     phoneNumber: '+99899 973-72-60',
                     sponsorshipAmount: '7 000 000',

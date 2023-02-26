@@ -22,6 +22,7 @@
             <app-info-card-header
                 :title="'Talaba haqida'"
                 :btn-name="'Tahrirlash'"
+                @openStudent="openStudentModal"
             />
 
             <app-horizontal-row-with-title>
@@ -96,13 +97,61 @@
                     :ordinal-number="index"
                     :full-name="sponsor.fullName"
                     :allocated-sum="sponsor.allocatedSum"
+                    @openSponsor="openSponsorModal(sponsor)"
                 />
             </table>
 
         </div>
-        <!-- Modal content start-->
+
+        <!-- Modal edit-student start-->
         <app-modal
-            @closemodal="$store.commit('UPDATE_MODAL')"
+            @closeModal="$store.commit('UPDATE_STUDENT_MODAL')"
+            :is-open="$store.state.isOpenStudentModal"
+            :title="'Tahrirlash'"
+        >
+            <div class="space-y-7">
+                <div class="space-y-7">
+                    <app-input
+                        :id="'name'"
+                        :title="'F.I.Sh. (Familiya Ism Sharifingiz)'"
+                    >
+                        F.I.Sh. (Familiya Ism Sharifingiz)
+                    </app-input>
+                    <app-input
+                        :id="'phone'"
+                        :title="'Telefon raqam'"
+                    >
+                        Telefon raqam
+                    </app-input>
+                    <app-select
+                        :id="'otm'"
+                        :title="'OTM'"
+                    >
+                        OTM
+                    </app-select>
+                    <app-input
+                        :id="'contract'"
+                    >
+                        Kontrakt miqdori
+                    </app-input>
+
+                    <div class="border-b"></div>
+                </div>
+                <div class="flex justify-end">
+                    <app-button>
+                        <div class="flex items-center space-x-1">
+                            <FolderArrowDownIcon class="w-4 h-4 stroke-2"/>
+                            <button class="text-[14px]">Saqlash</button>
+                        </div>
+                    </app-button>
+                </div>
+            </div>
+        </app-modal>
+        <!-- Modal edit-student end-->
+
+        <!-- Modal add-sponsor start-->
+        <app-modal
+            @closeModal="$store.commit('UPDATE_MODAL')"
             :is-open="$store.state.isOpenModal"
             :title="'Homiy qo‘shish'"
         >
@@ -132,7 +181,49 @@
                 </div>
             </div>
         </app-modal>
-        <!-- Modal content end-->
+        <!-- Modal add-sponsor end-->
+
+        <!-- Modal edit-sponsor start-->
+        <app-modal
+            @closeModal="$store.commit('OPEN_SPONSOR_MODAL')"
+            :is-open="$store.state.isOpenSponsorModal"
+            :title="'Homiy o\'zgartirish'"
+        >
+            <div class="space-y-7">
+                <div class="space-y-7">
+                    <app-select
+                        :id="'name'"
+                        :title="'F.I.Sh. (Familiya Ism Sharifingiz)'"
+                    >
+                        {{ sponsor.fullName }}
+                    </app-select>
+                    <app-input
+                        :id="'sum'"
+                        :placeholder="'Summani kiriting'"
+                        :value="`${sponsor.allocatedSum}  ${sponsor.currency}`"
+                    >
+                        Ajratilingan summa
+                    </app-input>
+
+                    <div class="border-b"></div>
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <app-button class="bg-red-100 text-red-500 hover:bg-red-500">
+                        <div class="flex items-center space-x-1">
+                            <TrashIcon class="w-4 h-4 stroke-2"/>
+                            <button class="text-[14px]">Homiyni o‘chirish</button>
+                        </div>
+                    </app-button>
+                    <app-button>
+                        <div class="flex items-center space-x-1">
+                            <FolderArrowDownIcon class="w-4 h-4 stroke-2"/>
+                            <button class="text-[14px]">Saqlash</button>
+                        </div>
+                    </app-button>
+                </div>
+            </div>
+        </app-modal>
+        <!-- Modal edit-sponsor end-->
 
         <div class="w-full md:w-4/5 lg:w-3/5 px-3 md:px-7 pt-3 md:pt-7 mx-4 md:mx-auto">
             <img src="../assets/footer-image.png" alt="">
@@ -141,7 +232,7 @@
 </template>
 
 <script>
-import {UserIcon, PlusIcon} from '@heroicons/vue/24/outline'
+import {UserIcon, PlusIcon, TrashIcon, FolderArrowDownIcon} from '@heroicons/vue/24/outline'
 import AppButton from "../components/AppButton.vue";
 import AppHorizontalRowWithTitle from "../components/AppHorizontalRowWithTitle.vue";
 import AppGoBackHeader from "@/components/AppGoBackHeader.vue";
@@ -165,37 +256,63 @@ export default {
         AppHorizontalRowWithTitle,
         AppButton,
         UserIcon,
-        PlusIcon
+        PlusIcon,
+        TrashIcon,
+        FolderArrowDownIcon
     },
     data() {
         return {
             sponsors: [
                 {
+                    id: 1,
                     fullName: 'Alimov Abror Xabibullayevich',
                     allocatedSum: '1 000 000',
                     currency: 'UZS'
                 },
                 {
+                    id: 2,
                     fullName: 'Saimov Rustam Saimjonovich',
                     allocatedSum: '7 000 000',
                     currency: 'UZS'
                 },
                 {
+                    id: 3,
                     fullName: 'Sanginov Otabek Muratovich',
                     allocatedSum: '1 000 000',
                     currency: 'UZS'
                 },
                 {
+                    id: 4,
                     fullName: 'Nazarov Sanjar Olimovich',
                     allocatedSum: '12 000 000',
                     currency: 'UZS'
                 },
-            ]
+            ],
+            sponsor: {
+                id: null,
+                fullName: '',
+                allocatedSum: 0,
+                currency: ''
+            }
+        }
+    },
+    methods: {
+        openSponsorModal(data) {
+            this.sponsor.id = data.id
+            this.sponsor.fullName = data.fullName
+            this.sponsor.allocatedSum = data.allocatedSum
+            this.sponsor.currency = data.currency
+            this.$store.commit('OPEN_SPONSOR_MODAL')
+        },
+        openStudentModal() {
+            this.$store.commit('UPDATE_STUDENT_MODAL')
         }
     }
 }
 </script>
 
 <style scoped>
-
+body {
+    overflow: hidden!important;
+}
 </style>

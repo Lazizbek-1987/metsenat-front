@@ -26,7 +26,7 @@ const router = createRouter({
       component: () => import('../views/SponsorsPage.vue')
     },
     {
-      path: '/sponsor-info',
+      path: '/sponsors/:id',
       name: 'sponsor-info',
       component: () => import('../views/SponsorInfoPage.vue')
     },

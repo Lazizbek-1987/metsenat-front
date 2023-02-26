@@ -1,6 +1,6 @@
 <template>
     <div class="block md:flex justify-start items-center space-x-3 px-12 py-4 bg-[#FBFBFB]">
-        <app-go-back-header class="mb-4 md:mb-0 text-2xl">Isfandiyorov Iqbol Bobomirzayevich</app-go-back-header>
+        <app-go-back-header class="mb-4 md:mb-0 text-2xl">{{ sponsor.fullName }}</app-go-back-header>
         <app-status :title="'Tasdiqlangan'"/>
     </div>
     <div class="space-y-6 md:space-y-10 mt-6 md:mt-10">
@@ -52,6 +52,16 @@ import AppInfoCardHeader from "@/components/AppInfoCardHeader.vue";
 export default {
     name: "SponsorInfoPage",
     components: {AppInfoCardHeader, AppStatus, AppGoBackHeader, PlusIcon},
+    data() {
+        return {
+            sponsor: null
+        }
+    },
+    created() {
+        this.sponsor = this.$store.state.sponsors.find(el => {
+            return el.id === this.$route.params.id
+        })
+    }
 }
 </script>
 

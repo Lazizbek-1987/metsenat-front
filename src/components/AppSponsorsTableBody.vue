@@ -12,12 +12,12 @@
         <td class="text-center text-[15px] text-[#1D1D1F] py-6">{{ sixthBody }}</td>
         <td :class="style" class="text-center text-[15px] text-[#1D1D1F] py-6">{{ seventhBody }}</td>
         <td class="text-center rounded-r-lg">
-            <router-link :to="link">
+            <div @click="goToDetail(id)">
                 <img
                     src="./icons/eye.svg"
                     class="text-primary w-5 h-5 mx-auto cursor-pointer hover:scale-125 duration-500"
                 />
-            </router-link>
+            </div>
         </td>
     </tr>
     </tbody>
@@ -37,9 +37,13 @@ export default {
         currency: {type: String},
 
         style: {type: String},
-
-        link: {type: String}
-    }
+        id: {type: [Number, String]}
+    },
+     methods: {
+        goToDetail(id) {
+            this.$router.push(`sponsors/${id}`)
+        }
+     }
 }
 </script>
 
