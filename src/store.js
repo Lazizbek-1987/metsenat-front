@@ -6,6 +6,7 @@ const store = createStore({
             isOpenStudentModal: false,
             isOpenModal: false,
             isOpenSponsorModal: false,
+            isOpenFilterModal: false,
             sponsors: [
                 {
                     id: 1,
@@ -43,7 +44,8 @@ const store = createStore({
                     date: '03.05.2021',
                     status: 'Bekor qilingan'
                 },
-            ]
+            ],
+            isCheck: false,
         }
     },
     mutations: {
@@ -55,6 +57,12 @@ const store = createStore({
         },
         OPEN_SPONSOR_MODAL(state) {
             state.isOpenSponsorModal = !state.isOpenSponsorModal
+        },
+        OPEN_FILTER_MODAL(state) {
+            state.isOpenFilterModal = !state.isOpenFilterModal
+        },
+        CHECK_FILTER(state) {
+            state.isCheck = !state.isCheck
         }
     }
 })
