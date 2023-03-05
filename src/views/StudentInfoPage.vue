@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-between items-center px-12 py-4 bg-[#FBFBFB]">
-        <app-go-back-header>Isfandiyorov Iqbol Bobomirzayevich</app-go-back-header>
+        <app-go-back-header>{{ student.full_name }}</app-go-back-header>
         <app-button>
             <div class="flex items-center space-x-2">
                 <PlusIcon class="w-4 h-4 stroke-2"/>
@@ -35,12 +35,12 @@
                     alt="student-photo"
                     class="p-3 border-2 border-blue-100 rounded bg-gray-100"
                 >
-                <h3 class="w-1/4">Isfandiyorov Iqbol Bobomirzayevich</h3>
+                <h3 class="w-1/4">{{ student.full_name }}</h3>
             </div>
 
             <div>
                 <h4 class="text-[12px] tracking-widest uppercase text-gray-400">Telefon raqam</h4>
-                <h4 class="uppercase">+998 99 973-72-60</h4>
+                <h4 class="uppercase">{{ student.phone }}</h4>
             </div>
 
             <app-horizontal-row-with-title>
@@ -51,21 +51,21 @@
                 <div class="space-y-6">
                     <div class="space-y-2">
                         <h3 class="text-gray-400 text-[12px]">OTM</h3>
-                        <p>O’zbekiston davlat jahon tillari universiteti</p>
+                        <p>{{ student.institute.name }}</p>
                     </div>
                     <div class="space-y-2">
                         <h3 class="text-gray-400 text-[12px]">Ajratilingan summa</h3>
-                        <p>14 000 000 UZS</p>
+                        <p>{{ student.given }}</p>
                     </div>
                 </div>
                 <div class="space-y-6 text-start">
                     <div class="space-y-2">
                         <h3 class="text-gray-400 text-[12px]">Talabalik turi</h3>
-                        <p>Bakalavr</p>
+                        <p>{{ student.get_status_display }}</p>
                     </div>
                     <div class="space-y-2">
                         <h3 class="text-gray-400 text-[12px]">Kontrakt miqdori</h3>
-                        <p>30 000 000 UZS</p>
+                        <p>{{ student.contract }}</p>
                     </div>
                 </div>
             </div>
@@ -92,11 +92,11 @@
                     :deeds="'Amallar'"
                 />
                 <the-sponsors-to-student-table-body
-                    v-for="(sponsor, index) in sponsors"
-                    :key="index"
+                    v-for="(sponsor, index) in getSponsorsList"
+                    :key="sponsor.id"
                     :ordinal-number="index"
-                    :full-name="sponsor.fullName"
-                    :allocated-sum="sponsor.allocatedSum"
+                    :full-name="sponsor.full_name"
+                    :sum="sponsor.sum"
                     @openSponsor="openSponsorModal(sponsor)"
                 />
             </table>
@@ -114,12 +114,14 @@
                     <app-input
                         :id="'name'"
                         :title="'F.I.Sh. (Familiya Ism Sharifingiz)'"
+                        :model="student.full_name"
                     >
                         F.I.Sh. (Familiya Ism Sharifingiz)
                     </app-input>
                     <app-input
                         :id="'phone'"
                         :title="'Telefon raqam'"
+                        :model="student.phone"
                     >
                         Telefon raqam
                     </app-input>
@@ -128,9 +130,14 @@
                         :title="'OTM'"
                     >
                         OTM
+                        <option value="" selected>{{ student.institute.name }}</option>
+                        <option v-for="institute in getInstitutions" :key="institute.id" value="">
+                            {{ institute.name }}
+                        </option>
                     </app-select>
                     <app-input
                         :id="'contract'"
+                        :model="student.contract"
                     >
                         Kontrakt miqdori
                     </app-input>
@@ -160,7 +167,12 @@
                     :id="'name'"
                     :title="'F.I.Sh. (Familiya Ism Sharifingiz)'"
                 >
-                    Homiyni tanlang
+                    <option
+                        v-for="sponsor in getSponsorsList"
+                        :key="sponsor.id"
+                    >
+                        {{ sponsor.full_name }}
+                    </option>
                 </app-select>
                 <app-input
                     :id="'sum'"
@@ -194,13 +206,21 @@
                     <app-select
                         :id="'name'"
                         :title="'F.I.Sh. (Familiya Ism Sharifingiz)'"
+                        v-model="sponsor.fullName"
                     >
-                        {{ sponsor.fullName }}
+                        <option v-for="sponsor in getSponsorsList" :key="sponsor.is">
+                            {{ sponsor.full_name }}
+                        </option>
+                        <option :value="sponsor.fullName" selected>
+                            {{ sponsor.fullName }}
+                        </option>
                     </app-select>
+
                     <app-input
                         :id="'sum'"
                         :placeholder="'Summani kiriting'"
-                        :value="`${sponsor.allocatedSum}  ${sponsor.currency}`"
+                        :type="'number'"
+                        :model="sponsor.sum"
                     >
                         Ajratilingan summa
                     </app-input>
@@ -211,7 +231,7 @@
                     <app-button class="bg-red-100 text-red-500 hover:bg-red-500">
                         <div class="flex items-center space-x-1">
                             <TrashIcon class="w-4 h-4 stroke-2"/>
-                            <button class="text-[14px]">Homiyni o‘chirish</button>
+                            <button @click="removeSponsor(sponsor.id)" class="text-[14px]">Homiyni o‘chirish</button>
                         </div>
                     </app-button>
                     <app-button>
@@ -228,6 +248,7 @@
         <div class="w-full md:w-4/5 lg:w-3/5 px-3 md:px-7 pt-3 md:pt-7 mx-4 md:mx-auto">
             <img src="../assets/footer-image.png" alt="">
         </div>
+
     </div>
 </template>
 
@@ -242,6 +263,7 @@ import AppInput from "@/components/AppInput.vue";
 import AppSelect from "@/components/AppSelect.vue";
 import TheSponsorsToStudentTableHead from "@/components/TheSponsorsToStudentTableHead.vue";
 import TheSponsorsToStudentTableBody from "@/components/TheSponsorsToStudentTableBody.vue";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "AddSponsorPage",
@@ -260,59 +282,66 @@ export default {
         TrashIcon,
         FolderArrowDownIcon
     },
+    computed: {
+        ...mapGetters(['getSponsorsList', 'getStudent', 'getInstitutions'])
+    },
     data() {
         return {
-            sponsors: [
-                {
-                    id: 1,
-                    fullName: 'Alimov Abror Xabibullayevich',
-                    allocatedSum: '1 000 000',
-                    currency: 'UZS'
-                },
-                {
-                    id: 2,
-                    fullName: 'Saimov Rustam Saimjonovich',
-                    allocatedSum: '7 000 000',
-                    currency: 'UZS'
-                },
-                {
-                    id: 3,
-                    fullName: 'Sanginov Otabek Muratovich',
-                    allocatedSum: '1 000 000',
-                    currency: 'UZS'
-                },
-                {
-                    id: 4,
-                    fullName: 'Nazarov Sanjar Olimovich',
-                    allocatedSum: '12 000 000',
-                    currency: 'UZS'
-                },
-            ],
             sponsor: {
                 id: null,
                 fullName: '',
-                allocatedSum: 0,
+                sum: 0,
                 currency: ''
+            },
+            student: {
+                full_name: "",
+                type: 0,
+                phone: "",
+                institute: "",
+                contract: 0,
+                given: 0,
+                get_status_display: ''
             }
         }
     },
     methods: {
+        ...mapActions(['fetchSponsors', 'deleteSponsor', 'fetchStudent', 'fetchInstitutions']),
+        removeSponsor(id) {
+            console.log(id)
+            alert('Homiy o\'chirildi')
+            this.deleteSponsor(id)
+            this.fetchSponsors()
+        },
         openSponsorModal(data) {
             this.sponsor.id = data.id
-            this.sponsor.fullName = data.fullName
-            this.sponsor.allocatedSum = data.allocatedSum
-            this.sponsor.currency = data.currency
+            this.sponsor.fullName = data.full_name
+            this.sponsor.sum = data.sum
+            this.sponsor.currency = 'UZS'
             this.$store.commit('OPEN_SPONSOR_MODAL')
         },
         openStudentModal() {
             this.$store.commit('UPDATE_STUDENT_MODAL')
         }
+    },
+    mounted() {
+        this.fetchStudent(this.$route.params.id)
+            .then(() => {
+                this.student.full_name = this.getStudent.full_name
+                this.student.type = this.getStudent.type
+                this.student.phone = this.getStudent.phone
+                this.student.institute = this.getStudent.institute
+                this.student.contract = this.getStudent.contract
+                this.student.given = this.getStudent.given
+                this.student.get_status_display = this.getStudent.get_status_display
+            })
+        this.fetchSponsors()
+        this.fetchInstitutions()
     }
 }
 </script>
 
 <style scoped>
 body {
-    overflow: hidden!important;
+    overflow: hidden !important;
 }
 </style>

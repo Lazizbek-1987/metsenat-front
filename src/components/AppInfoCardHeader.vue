@@ -24,7 +24,7 @@ export default {
     },
     methods: {
         openModal() {
-            this.$emit('openStudent')
+            this.$emit('openSponsor')
         }
     }
 }

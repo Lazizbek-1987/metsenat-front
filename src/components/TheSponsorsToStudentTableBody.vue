@@ -9,7 +9,7 @@
             }}
         </td>
         <td class="text-center text-[15px] border-y-2 border-y-blue-200 text-[#1D1D1F] py-6">
-            {{ allocatedSum }}
+            {{ sum }}
             <span class="text-gray-400"> {{ currency }}</span>
         </td>
         <td
@@ -19,26 +19,6 @@
         </td>
     </tr>
     </tbody>
-
-<!--    <app-modal :title="'Homiyni tahrirlash'">-->
-<!--        <div class="space-y-7">-->
-<!--            <app-select-->
-<!--                :id="'name'"-->
-<!--                :title="'F.I.Sh. (Familiya Ism Sharifingiz)'"-->
-<!--            >-->
-<!--                Homiyni tanlang-->
-<!--            </app-select>-->
-<!--            <app-input-->
-<!--                :id="'sum'"-->
-<!--                :placeholder="'Summani kiriting'"-->
-<!--                :type="'number'"-->
-<!--            >-->
-<!--                Ajratilingan summa-->
-<!--            </app-input>-->
-
-<!--            <div class="border-b"></div>-->
-<!--        </div>-->
-<!--    </app-modal>-->
 </template>
 
 <script>
@@ -54,7 +34,7 @@ export default {
     props: {
         ordinalNumber: {type: Number},
         fullName: {type: String},
-        allocatedSum: {type: String},
+        sum: {type: Number},
         currency: {type: String},
         link: {type: String},
     },

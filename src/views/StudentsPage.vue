@@ -21,21 +21,21 @@
                 :deeds="'Amallar'"
             />
             <app-students-table-body
-                v-for="(student, index) in students"
+                v-for="(student, index) in getStudentsList"
                 :key="index"
                 :ordinal-number="index + 1"
-                :full-name="student.fullName"
-                :type-of-student="student.typeOfStudent"
-                :university="student.university"
-                :allocated-amount="student.allocatedAmount"
-                :contract-amount="student.contractAmount"
+                :full-name="student.full_name"
+                :type-of-student="student.get_status_display"
+                :university="student.institute.name"
+                :allocated-amount="student.given"
+                :contract-amount="student.contract"
                 :currency="'UZS'"
-                :link="'/student-info'"
+                :link="'/students/' + student.id"
             />
         </table>
         <div class="flex justify-between items-center mt-7">
             <div>
-                <p class="text-sm">59 tadan 1-10 ko‘rsatilmoqda</p>
+                <p class="text-sm">{{getStudentsCount}} tadan 1-10 ko‘rsatilmoqda</p>
             </div>
             <div class="flex items-center space-x-3">
                 <p>Ko'rsatish</p>
@@ -58,6 +58,7 @@ import AppStudentsTableHead from "../components/AppStudentsTableHead.vue";
 import AppStudentsTableBody from "../components/AppStudentsTableBody.vue";
 import AppButton from "../components/AppButton.vue";
 import TheNavbar from "../components/TheNavbar.vue";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "StudentsPage",
@@ -72,39 +73,18 @@ export default {
         ChevronRightIcon,
         PlusIcon
     },
+    computed: {
+        ...mapGetters(['getStudentsList', 'getStudentsCount'])
+    },
     data() {
         return {
-            students: [
-                {
-                    fullName: 'Alimov Abror Xabibullayevich',
-                    typeOfStudent: 'Bakalavr',
-                    university: 'Toshkent shahridagi INHA Universiteti',
-                    allocatedAmount: '14 000 000',
-                    contractAmount: '30 000 000',
-                },
-                {
-                    fullName: 'Saimov Rustam Saimjonovich',
-                    typeOfStudent: 'Magistr',
-                    university: 'O’zbekiston milliy universiteti',
-                    allocatedAmount: '28 000 000',
-                    contractAmount: '28 000 000',
-                },
-                {
-                    fullName: 'Alimov Abror Xabibullayevich',
-                    typeOfStudent: 'Bakalavr',
-                    university: 'Toshkent shahridagi INHA Universiteti',
-                    allocatedAmount: '14 000 000',
-                    contractAmount: '30 000 000',
-                },
-                {
-                    fullName: 'Alimov Abror Xabibullayevich',
-                    typeOfStudent: 'Magistr',
-                    university: 'Toshkent shahridagi INHA Universiteti',
-                    allocatedAmount: '14 000 000',
-                    contractAmount: '30 000 000',
-                },
-            ]
         }
+    },
+    methods: {
+        ...mapActions(['fetchStudents'])
+    },
+    mounted() {
+        this.fetchStudents()
     }
 }
 </script>

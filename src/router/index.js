@@ -37,15 +37,15 @@ const router = createRouter({
       component: () => import('../views/StudentsPage.vue')
     },
     {
+      path: '/students/:id',
+      name: 'student-info',
+      component: () => import('../views/StudentInfoPage.vue')
+    },
+    {
       path: '/add-student',
       name: 'add-student',
       component: () => import('../views/AddStudentPage.vue')
     },
-    {
-      path: '/student-info',
-      name: 'student-info',
-      component: () => import('../views/StudentInfoPage.vue')
-    }
   ]
 })
 

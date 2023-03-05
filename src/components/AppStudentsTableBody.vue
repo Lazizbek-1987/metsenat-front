@@ -30,8 +30,8 @@ export default {
         fullName: {type: String},
         typeOfStudent: {type: String},
         university: {type: String},
-        allocatedAmount: {type: String},
-        contractAmount: {type: String},
+        allocatedAmount: {type: Number},
+        contractAmount: {type: Number},
         currency: {type: String},
 
         link: {type: String}

@@ -1,13 +1,14 @@
 <template>
     <div class="space-y-2">
-        <label :for="id" class="text-[#1D1D1F]">
+        <label :for="id" class="text-[#1D1D1F] uppercase tracking-widest">
             <slot></slot>
         </label>
         <input
             :type="type"
             :placeholder="placeholder"
             :id="id"
-            :value="value"
+            :value="model"
+            :v-model="v_model"
             class="w-full px-4 py-2 border border-[#E0E7FF] bg-[#F9FAFF] focus:bg-white duration-500 outline-0 rounded-lg"
         >
     </div>
@@ -19,8 +20,9 @@ export default {
     props: {
         type: {type: String, default: 'text'},
         placeholder: {type: String},
-        id: {id: String},
-        value: {type: String}
+        id: {id: Number},
+        model: {type: [Number, String]},
+        v_model: {type: [Number, String]}
     }
 }
 </script>

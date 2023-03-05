@@ -14,26 +14,26 @@
 
             />
             <app-sponsors-table-body
-                v-for="(sponsor, index) in sponsors"
+                v-for="(sponsor, index) in getSponsorsList"
                 :key="sponsor.id"
                 :first-body="index + 1"
                 :id="sponsor.id"
-                :second-body="sponsor.fullName"
-                :third-body="sponsor.phoneNumber"
-                :fourth-body="sponsor.sponsorshipAmount"
-                :fifth-body="sponsor.spentAmount"
-                :sixth-body="sponsor.date"
-                :seventh-body="sponsor.status"
+                :second-body="sponsor.full_name"
+                :third-body="sponsor.phone"
+                :fourth-body="sponsor.sum"
+                :fifth-body="sponsor.spent"
+                :sixth-body="sponsor.created_at.slice(0, 10)"
+                :seventh-body="sponsor.get_status_display"
                 :currency="'UZS'"
-                :style="sponsor.status === 'Yangi' ? 'text-primary'
-                    : sponsor.status === 'Moderatsiyada' ? 'text-amber-500'
-                    : sponsor.status === 'Tasdiqlangan' ? 'text-green-500'
+                :style="sponsor.get_status_display === 'Yangi' ? 'text-primary'
+                    : sponsor.get_status_display === 'Moderatsiyada' ? 'text-amber-500'
+                    : sponsor.get_status_display === 'Tasdiqlangan' ? 'text-green-500'
                     : 'text-gray-400'"
             />
         </table>
         <div class="flex justify-between items-center mt-7">
             <div>
-                <p class="text-sm">59 tadan 1-10 ko‘rsatilmoqda</p>
+                <p class="text-sm">{{ getSponsorsCount }} tadan 1-10 ko‘rsatilmoqda</p>
             </div>
             <div class="flex items-center space-x-3">
                 <p>Ko'rsatish</p>
@@ -55,6 +55,7 @@ import AppPagination from "../components/AppPagination.vue";
 import AppSponsorsTableHead from "../components/AppSponsorsTableHead.vue";
 import AppSponsorsTableBody from "../components/AppSponsorsTableBody.vue";
 import TheNavbar from "@/components/TheNavbar.vue";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "SponsorsPage",
@@ -67,47 +68,18 @@ export default {
         ChevronLeftIcon,
         ChevronRightIcon
     },
+    computed: {
+        ...mapGetters(['getSponsorsList', 'getSponsorsCount'])
+    },
     data() {
         return {
-            sponsors: [
-                {
-                    id: 1,
-                    fullName: 'Alimov Abror Xabibullayevich',
-                    phoneNumber: '+99899 973-72-60',
-                    sponsorshipAmount: '30 000 000',
-                    spentAmount: '0',
-                    date: '15.01.2021',
-                    status: 'Yangi'
-                },
-                {
-                    id: 2,
-                    fullName: 'Saimov Rustam Saimjonovich',
-                    phoneNumber: '+99899 973-72-60',
-                    sponsorshipAmount: '1 000 000',
-                    spentAmount: '0',
-                    date: '02.02.2021',
-                    status: 'Moderatsiyada'
-                },
-                {
-                    id: 3,
-                    fullName: 'Sanginov Otabek Muratovich',
-                    phoneNumber: '+99899 973-72-60',
-                    sponsorshipAmount: '5 000 000',
-                    spentAmount: '5 000 000',
-                    date: '20.04.2021',
-                    status: 'Tasdiqlangan'
-                },
-                {
-                    id: 4,
-                    fullName: 'Nazarov Sanjar Olimovich',
-                    phoneNumber: '+99899 973-72-60',
-                    sponsorshipAmount: '7 000 000',
-                    spentAmount: '7 000 000',
-                    date: '03.05.2021',
-                    status: 'Bekor qilingan'
-                },
-            ]
         }
+    },
+    methods: {
+        ...mapActions(['fetchSponsors'])
+    },
+    mounted() {
+        this.fetchSponsors()
     }
 }
 </script>

@@ -24,7 +24,7 @@ export default {
             type: String
         },
         sum: {
-            title: String
+            title: Number
         },
         symbol: {
             type: String
