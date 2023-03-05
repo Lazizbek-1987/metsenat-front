@@ -92,29 +92,7 @@ export default {
         XMarkIcon,
         EyeIcon
     },
-    data() {
-        return {
-            activeTab: 1,
-            items: [
-                {id: 1, status: 'Yangi'},
-                {id: 2, status: 'Moderatsiyada'},
-                {id: 3, status: 'Tasdiqlangan'},
-                {id: 4, status: 'Bekor qilingan'}
-            ],
-            sums: [
-                {id: 1, amount: '1 000 000', currency: 'UZS'},
-                {id: 2, amount: '5 000 000', currency: 'UZS'},
-                {id: 3, amount: '7 000 000', currency: 'UZS'},
-                {id: 4, amount: '10 000 000', currency: 'UZS'},
-                {id: 5, amount: '30 000 000', currency: 'UZS'},
-                {id: 6, amount: '50 000 000', currency: 'UZS'}
-            ]
-        };
-    },
     methods: {
-        openStudentModal() {
-            this.$store.commit('OPEN_FILTER_MODAL')
-        },
         openFilter() {
             this.$store.commit('OPEN_FILTER_MODAL')
         },

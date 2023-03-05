@@ -41,7 +41,6 @@
                         </option>
                     </app-select>
                 </div>
-                <pre>{{getStudentsList}}</pre>
                 <div class="w-full md:w-1/2">
                     <app-input :placeholder="'Summani kiriting'" :id="'sum'" :type="'number'">
                         Kontrakt summa

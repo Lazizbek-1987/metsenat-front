@@ -8,12 +8,11 @@
                     to="/add-student"
                     class="text-[14px]"
                 >
-                    Homiy qo‘shish
+                    Talaba qo‘shish
                 </router-link>
             </div>
         </app-button>
     </div>
-
 
     <div class="space-y-6 md:space-y-10 mt-6 md:mt-10">
         <div
@@ -22,7 +21,7 @@
             <app-info-card-header
                 :title="'Talaba haqida'"
                 :btn-name="'Tahrirlash'"
-                @openStudent="openStudentModal"
+                @click="$store.commit('UPDATE_STUDENT_MODAL')"
             />
 
             <app-horizontal-row-with-title>
@@ -51,7 +50,7 @@
                 <div class="space-y-6">
                     <div class="space-y-2">
                         <h3 class="text-gray-400 text-[12px]">OTM</h3>
-                        <p>{{ student.institute.name }}</p>
+                        <p>{{ student.institute }}</p>
                     </div>
                     <div class="space-y-2">
                         <h3 class="text-gray-400 text-[12px]">Ajratilingan summa</h3>
@@ -92,17 +91,16 @@
                     :deeds="'Amallar'"
                 />
                 <the-sponsors-to-student-table-body
-                    v-for="(sponsor, index) in getSponsorsList"
+                    v-for="(sponsor, index) in getStudentSponsorsList"
                     :key="sponsor.id"
-                    :ordinal-number="index"
-                    :full-name="sponsor.full_name"
-                    :sum="sponsor.sum"
+                    :ordinal-number="index + 1"
+                    :full-name="sponsor.sponsor.full_name"
+                    :sum="sponsor.summa"
                     @openSponsor="openSponsorModal(sponsor)"
                 />
             </table>
-
         </div>
-
+<pre>{{getStudentSponsorsList}}</pre>
         <!-- Modal edit-student start-->
         <app-modal
             @closeModal="$store.commit('UPDATE_STUDENT_MODAL')"
@@ -130,13 +128,14 @@
                         :title="'OTM'"
                     >
                         OTM
-                        <option value="" selected>{{ student.institute.name }}</option>
+                        <option value="" selected>{{ student.institute }}</option>
                         <option v-for="institute in getInstitutions" :key="institute.id" value="">
                             {{ institute.name }}
                         </option>
                     </app-select>
                     <app-input
                         :id="'contract'"
+                        :type="'number'"
                         :model="student.contract"
                     >
                         Kontrakt miqdori
@@ -167,6 +166,7 @@
                     :id="'name'"
                     :title="'F.I.Sh. (Familiya Ism Sharifingiz)'"
                 >
+                    <option value="" selected disabled>Homiyni tanlang</option>
                     <option
                         v-for="sponsor in getSponsorsList"
                         :key="sponsor.id"
@@ -208,11 +208,11 @@
                         :title="'F.I.Sh. (Familiya Ism Sharifingiz)'"
                         v-model="sponsor.fullName"
                     >
-                        <option v-for="sponsor in getSponsorsList" :key="sponsor.is">
+                        <option v-for="sponsor in getSponsorsList" :key="sponsor.id">
                             {{ sponsor.full_name }}
                         </option>
-                        <option :value="sponsor.fullName" selected>
-                            {{ sponsor.fullName }}
+                        <option v-for="sponsor in getStudentSponsorsList" :key="sponsor.sponsor.id" selected>
+                            {{ sponsor.sponsor.full_name }}
                         </option>
                     </app-select>
 
@@ -283,7 +283,12 @@ export default {
         FolderArrowDownIcon
     },
     computed: {
-        ...mapGetters(['getSponsorsList', 'getStudent', 'getInstitutions'])
+        ...mapGetters([
+            'getSponsorsList',
+            'getStudent',
+            'getInstitutions',
+            'getStudentSponsorsList'
+        ])
     },
     data() {
         return {
@@ -297,7 +302,7 @@ export default {
                 full_name: "",
                 type: 0,
                 phone: "",
-                institute: "",
+                institute: '',
                 contract: 0,
                 given: 0,
                 get_status_display: ''
@@ -305,7 +310,14 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['fetchSponsors', 'deleteSponsor', 'fetchStudent', 'fetchInstitutions']),
+        ...mapActions([
+            'fetchSponsors',
+            'deleteSponsor',
+            'fetchStudent',
+            'fetchInstitutions',
+            'fetchStudentSponsors',
+            'fetchStudentSponsors'
+        ]),
         removeSponsor(id) {
             console.log(id)
             alert('Homiy o\'chirildi')
@@ -336,6 +348,8 @@ export default {
             })
         this.fetchSponsors()
         this.fetchInstitutions()
+        this.fetchStudentSponsors(this.$route.params.id)
+        this.fetchStudentSponsors(this.$route.params.id)
     }
 }
 </script>

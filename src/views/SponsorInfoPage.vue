@@ -65,7 +65,7 @@
                             <app-button>
                                 <div class="flex items-center space-x-1">
                                     <FolderArrowDownIcon class="w-4 h-4 stroke-2"/>
-                                    <button @click="editSponsor" class="text-[14px]">Saqlash</button>
+                                    <button type="submit" @click="editSponsor" class="text-[14px]">Saqlash</button>
                                 </div>
                             </app-button>
 
