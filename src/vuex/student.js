@@ -39,7 +39,10 @@ export default {
                             full_name: res.data.full_name,
                             type: res.data.type,
                             phone: res.data.phone,
-                            institute: res.data.institute.name,
+                            institute: {
+                                id: res.data.institute.id,
+                                name: res.data.institute.name
+                            },
                             contract: res.data.contract,
                             given: res.data.given,
                             get_status_display: res.data.get_status_display
@@ -54,8 +57,19 @@ export default {
                     })
             })
         },
-        pushStudent(context, data) {
-            axios.post('https://metsenatclub.xn--h28h.uz/api/v1/student-create/', data)
+        postStudent(context, data) {
+            axios.put(`https://metsenatclub.xn--h28h.uz/api/v1/student-update/`, data)
+                .then((res) => {
+                    console.log(res)
+
+                    context.commit('UPDATE_STUDENT', res.data)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        },
+        putStudent(context, data) {
+            axios.put(`https://metsenatclub.xn--h28h.uz/api/v1/student-update/${data.id}/`, data)
                 .then((res) => {
                     console.log(res)
 
@@ -87,7 +101,10 @@ export default {
             full_name: '',
             type: 0,
             phone: '',
-            institute: '',
+            institute: {
+                id: null,
+                name: ''
+            },
             contract: 0,
             given: 0,
             get_status_display: ''

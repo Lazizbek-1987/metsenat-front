@@ -1,5 +1,6 @@
 <template>
-    <div class="flex justify-start items-center w-[381px] px-6 py-7 space-x-4 bg-white rounded-lg">
+    <div class="flex justify-start items-center w-[381px] px-6 py-7 space-x-4 bg-white rounded-lg hover:scale-105
+         duration-300">
         <div :class="style" class="p-2 h-min rounded-xl">
             <BanknotesIcon class="w-6 h-6"/>
         </div>

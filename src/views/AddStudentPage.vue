@@ -80,13 +80,27 @@ export default {
         AppInput,
         PlusIcon,
     },
+    data() {
+        return {
+            student: {
+                id: null,
+                full_name: "",
+                type: 0,
+                phone: "",
+                institute: '',
+                contract: 0,
+                given: 0,
+                get_status_display: ''
+            }
+        }
+    },
     computed: {
-        ...mapGetters(['getInstitutions', 'getStudentsList'])
+        ...mapGetters(['getInstitutions'])
     },
     methods: {
-        ...mapActions(['fetchInstitutions', 'fetchStudents']),
+        ...mapActions(['fetchInstitutions', 'postStudent']),
         createStudent() {
-
+            this.postStudent()
         },
         goBack() {
             this.$router.go(-1)
@@ -94,7 +108,6 @@ export default {
     },
     mounted() {
         this.fetchInstitutions()
-        this.fetchStudents()
     }
 }
 </script>

@@ -15,6 +15,11 @@ const router = createRouter({
       component: () => import('../views/LoginPage.vue')
     },
     {
+      path: '/apply-sponsor',
+      name: 'apply-sponsor',
+      component: () => import('../views/ApplyAsSponsor.vue')
+    },
+    {
       path: '/dashboard',
       name: 'dashboard',
       component: () => import('../views/DashboardPage.vue')

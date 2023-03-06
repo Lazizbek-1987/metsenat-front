@@ -4,7 +4,8 @@
             <slot></slot>
         </label>
         <input
-            class="w-full px-4 py-2 border border-[#E0E7FF] bg-[#F9FAFF] focus:bg-white duration-500 outline-0 rounded-lg"
+            class="w-full px-4 py-2 border border-[#E0E7FF] bg-[#F9FAFF] focus:bg-white duration-500 outline-0
+            focus:border-primary rounded-lg"
             :type="type"
             :placeholder="placeholder"
             :id="id"

@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-between items-center px-12 py-4 bg-[#FBFBFB]">
-        <app-go-back-header>{{ student.full_name }}</app-go-back-header>
+        <app-go-back-header>{{ getStudent.full_name }}</app-go-back-header>
         <app-button>
             <div class="flex items-center space-x-2">
                 <PlusIcon class="w-4 h-4 stroke-2"/>
@@ -50,7 +50,7 @@
                 <div class="space-y-6">
                     <div class="space-y-2">
                         <h3 class="text-gray-400 text-[12px]">OTM</h3>
-                        <p>{{ student.institute }}</p>
+                        <p>{{ getStudent.institute.name }}</p>
                     </div>
                     <div class="space-y-2">
                         <h3 class="text-gray-400 text-[12px]">Ajratilingan summa</h3>
@@ -100,43 +100,55 @@
                 />
             </table>
         </div>
-<pre>{{getStudentSponsorsList}}</pre>
+
         <!-- Modal edit-student start-->
         <app-modal
             @closeModal="$store.commit('UPDATE_STUDENT_MODAL')"
             :is-open="$store.state.isOpenStudentModal"
             :title="'Tahrirlash'"
         >
-            <div class="space-y-7">
+            <form @submit.prevent="editStudent" class="space-y-7">
                 <div class="space-y-7">
                     <app-input
                         :id="'name'"
                         :title="'F.I.Sh. (Familiya Ism Sharifingiz)'"
-                        :model="student.full_name"
+                        v-model:value="student.full_name"
                     >
                         F.I.Sh. (Familiya Ism Sharifingiz)
                     </app-input>
                     <app-input
                         :id="'phone'"
                         :title="'Telefon raqam'"
-                        :model="student.phone"
+                        v-model:value="student.phone"
                     >
                         Telefon raqam
                     </app-input>
                     <app-select
                         :id="'otm'"
                         :title="'OTM'"
+                        v-model:value="student.institute"
                     >
                         OTM
-                        <option value="" selected>{{ student.institute }}</option>
-                        <option v-for="institute in getInstitutions" :key="institute.id" value="">
+                        <option value="" selected>{{ student.institute.name }}</option>
+                        <option
+                            v-for="institute in getInstitutions"
+                            :key="institute.id"
+                            :value="student.institute"
+                        >
                             {{ institute.name }}
                         </option>
                     </app-select>
                     <app-input
                         :id="'contract'"
                         :type="'number'"
-                        :model="student.contract"
+                        v-model:value="student.given"
+                    >
+                        Jartilgan summa
+                    </app-input>
+                    <app-input
+                        :id="'contract'"
+                        :type="'number'"
+                        v-model:value="student.contract"
                     >
                         Kontrakt miqdori
                     </app-input>
@@ -147,11 +159,13 @@
                     <app-button>
                         <div class="flex items-center space-x-1">
                             <FolderArrowDownIcon class="w-4 h-4 stroke-2"/>
-                            <button class="text-[14px]">Saqlash</button>
+                            <button type="submit" class="text-[14px]">Saqlash</button>
                         </div>
                     </app-button>
                 </div>
-            </div>
+            </form>
+
+<!--            <pre>{{ getInstitutions }}</pre>-->
         </app-modal>
         <!-- Modal edit-student end-->
 
@@ -299,6 +313,7 @@ export default {
                 currency: ''
             },
             student: {
+                id: null,
                 full_name: "",
                 type: 0,
                 phone: "",
@@ -316,8 +331,16 @@ export default {
             'fetchStudent',
             'fetchInstitutions',
             'fetchStudentSponsors',
-            'fetchStudentSponsors'
+            'fetchStudentSponsors',
+            'fetchStudents',
+            'putStudent'
         ]),
+        editStudent() {
+            alert('Edit this student info')
+            this.putStudent(this.student)
+            this.$router.push('/students')
+            this.fetchStudents()
+        },
         removeSponsor(id) {
             console.log(id)
             alert('Homiy o\'chirildi')
@@ -338,10 +361,12 @@ export default {
     mounted() {
         this.fetchStudent(this.$route.params.id)
             .then(() => {
+                this.student.id = this.getStudent.id
                 this.student.full_name = this.getStudent.full_name
                 this.student.type = this.getStudent.type
                 this.student.phone = this.getStudent.phone
-                this.student.institute = this.getStudent.institute
+                this.student.institute = this.getStudent.institute.id
+                // this.student.institute.name = this.getStudent.institute.name
                 this.student.contract = this.getStudent.contract
                 this.student.given = this.getStudent.given
                 this.student.get_status_display = this.getStudent.get_status_display
