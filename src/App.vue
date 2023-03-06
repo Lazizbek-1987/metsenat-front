@@ -7,7 +7,7 @@
 
 <script>
 import LoginPage from "./views/LoginPage.vue";
-import TheHeader from "./components/TheHeader.vue";
+import TheHeader from "./components/HeaderNavbar/TheHeader.vue";
 export default {
     components: {TheHeader, LoginPage}
 }

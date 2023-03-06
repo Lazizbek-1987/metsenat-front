@@ -40,7 +40,7 @@ export default {
 
         },
         deleteSponsor(context, sponsorId) {
-            axios.delete(`https://metsenatclub.xn--h28h.uz/api/v1/sponsor-detail/${sponsorId}/`)
+            axios.delete(`https://metsenatclub.xn--h28h.uz/api/v1/sponsor-delete/${sponsorId}/`)
                 .then((res) => {
                     console.log(res)
 

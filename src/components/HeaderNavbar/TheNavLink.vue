@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import AppButtonLink from "./AppButtonLink.vue";
+import AppButtonLink from "../Button/AppButtonLink.vue";
 
 export default {
     name: "TheNavLink",

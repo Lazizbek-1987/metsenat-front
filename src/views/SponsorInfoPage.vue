@@ -20,59 +20,53 @@
                 :is-open="$store.state.isOpenSponsorModal"
                 :title="'Homiy o\'zgartirish'"
             >
-                <form action="" @submit.prevent="putSponsor">
+                <form @submit.prevent="editSponsor" class="space-y-7">
                     <div class="space-y-7">
-                        <div class="space-y-7">
-                            <app-select
-                                :id="'name'"
-                                :title="'F.I.Sh. (Familiya Ism Sharifingiz)'"
-                                :v-model="sponsor.full_name"
-                            >
-                                <option value="" selected>{{ getSponsor.full_name }}</option>
-                                <option v-for="sponsor in getSponsorsList" :key="sponsor.is" :value="sponsor.full_name">
-                                    {{ sponsor.full_name }}
-                                </option>
-                            </app-select>
+                        <app-input
+                            :id="'sum'"
+                            :placeholder="'Summani kiriting'"
+                            v-model:value="sponsor.full_name"
+                        >
+                            F.I.Sh. (Familiya Ism Sharifingiz)
+                        </app-input>
 
-                            <app-input
-                                :id="'sum'"
-                                :placeholder="'Summani kiriting'"
-                                :type="'number'"
-                                :model="sponsor.sum"
-                                :v-model="sponsor.sum"
-                            >
-                                Ajratilingan summa
-                            </app-input>
+                        <app-input
+                            :id="'sum'"
+                            :placeholder="'Summani kiriting'"
+                            :type="'number'"
+                            v-model:value="sponsor.sum"
+                        >
+                            Ajratilingan summa
+                        </app-input>
 
-                            <app-input
-                                :id="'sum'"
-                                :placeholder="'Telefon raqamni kiriting'"
-                                :model="sponsor.phone"
-                                :v-model="sponsor.phone"
-                            >
-                                Telefon raqam
-                            </app-input>
+                        <app-input
+                            :id="'sum'"
+                            :placeholder="'Telefon raqamni kiriting'"
+                            v-model:value="sponsor.phone"
+                        >
+                            Telefon raqam
+                        </app-input>
 
-                            <div class="border-b"></div>
-                        </div>
-                        <div class="flex justify-end space-x-4">
-                            <app-button class="bg-red-100 text-red-500 hover:bg-red-500">
-                                <div class="flex items-center space-x-1">
-                                    <TrashIcon class="w-4 h-4 stroke-2"/>
-                                    <button @click="removeSponsor(sponsor.id)" class="text-[14px]">Homiyni o‘chirish</button>
-                                </div>
-                            </app-button>
-                            <app-button>
-                                <div class="flex items-center space-x-1">
-                                    <FolderArrowDownIcon class="w-4 h-4 stroke-2"/>
-                                    <button type="submit" @click="editSponsor" class="text-[14px]">Saqlash</button>
-                                </div>
-                            </app-button>
+                        <div class="border-b"></div>
+                    </div>
+                    <div class="flex justify-end space-x-4">
+                        <app-button class="bg-red-100 text-red-500 hover:bg-red-500">
+                            <div class="flex items-center space-x-1">
+                                <TrashIcon class="w-4 h-4 stroke-2"/>
+                                <button @click="removeSponsor(sponsor.id)" class="text-[14px]">Homiyni o‘chirish
+                                </button>
+                            </div>
+                        </app-button>
+                        <app-button>
+                            <div class="flex items-center space-x-1">
+                                <FolderArrowDownIcon class="w-4 h-4 stroke-2"/>
+                                <button type="submit" class="text-[14px]">Saqlash</button>
+                            </div>
+                        </app-button>
 
-
-                        </div>
                     </div>
                 </form>
+
             </app-modal>
             <!-- Modal edit-sponsor end-->
 
@@ -109,12 +103,12 @@
 import {PlusIcon} from '@heroicons/vue/24/outline'
 import AppGoBackHeader from "@/components/AppGoBackHeader.vue";
 import AppStatus from "@/components/AppStatus.vue";
-import AppInfoCardHeader from "@/components/AppInfoCardHeader.vue";
+import AppInfoCardHeader from "@/components/Card/AppInfoCardHeader.vue";
 import {mapActions, mapGetters} from "vuex";
-import AppModal from "@/components/AppModal.vue";
-import AppSelect from "@/components/AppSelect.vue";
-import AppInput from "@/components/AppInput.vue";
-import AppButton from "@/components/AppButton.vue";
+import AppModal from "@/components/Modal/AppModal.vue";
+import AppSelect from "@/components/Form/AppSelect.vue";
+import AppInput from "@/components/Form/AppInput.vue";
+import AppButton from "@/components/Button/AppButton.vue";
 import {TrashIcon, FolderArrowDownIcon} from "@heroicons/vue/24/outline";
 
 export default {
@@ -135,30 +129,29 @@ export default {
         ...mapGetters(['getSponsorsList', 'getSponsor'])
     },
     data() {
-      return {
-          sponsor: {
-              id: null,
-              full_name: '',
-              sum: 0,
-              currency: '',
-              phone: ''
-          }
-      }
+        return {
+            sponsor: {
+                id: null,
+                full_name: '',
+                sum: 0,
+                phone: ''
+            }
+        }
     },
     methods: {
         ...mapActions(['fetchSponsors', 'fetchSponsor', 'deleteSponsor', 'putSponsor']),
         removeSponsor(sponsorId) {
             alert('Deleted this sponsor')
             this.deleteSponsor(sponsorId)
+            this.$router.push('/sponsors')
+            this.fetchSponsors()
         },
         editSponsor() {
-            this.putSponsor({
-                id: this.sponsor.id,
-                full_name: this.sponsor.full_name,
-                sum: this.sponsor.sum,
-                phone: this.sponsor.phone
-            })
+            this.putSponsor(this.sponsor)
             alert('Edit this sponsor')
+            this.$router.push('/sponsors')
+            this.fetchSponsors()
+
         },
         openSponsor(data) {
             this.sponsor.id = data.id

@@ -254,15 +254,15 @@
 
 <script>
 import {UserIcon, PlusIcon, TrashIcon, FolderArrowDownIcon} from '@heroicons/vue/24/outline'
-import AppButton from "../components/AppButton.vue";
+import AppButton from "../components/Button/AppButton.vue";
 import AppHorizontalRowWithTitle from "../components/AppHorizontalRowWithTitle.vue";
 import AppGoBackHeader from "@/components/AppGoBackHeader.vue";
-import AppInfoCardHeader from "@/components/AppInfoCardHeader.vue";
-import AppModal from "@/components/AppModal.vue";
-import AppInput from "@/components/AppInput.vue";
-import AppSelect from "@/components/AppSelect.vue";
-import TheSponsorsToStudentTableHead from "@/components/TheSponsorsToStudentTableHead.vue";
-import TheSponsorsToStudentTableBody from "@/components/TheSponsorsToStudentTableBody.vue";
+import AppInfoCardHeader from "@/components/Card/AppInfoCardHeader.vue";
+import AppModal from "@/components/Modal/AppModal.vue";
+import AppInput from "@/components/Form/AppInput.vue";
+import AppSelect from "@/components/Form/AppSelect.vue";
+import TheSponsorsToStudentTableHead from "@/components/Sponsor/TheSponsorsToStudentTableHead.vue";
+import TheSponsorsToStudentTableBody from "@/components/Sponsor/TheSponsorsToStudentTableBody.vue";
 import {mapActions, mapGetters} from "vuex";
 
 export default {

@@ -23,10 +23,10 @@
 
 <script>
 import {FolderArrowDownIcon, PencilSquareIcon, TrashIcon} from "@heroicons/vue/24/outline";
-import AppModal from "@/components/AppModal.vue";
-import AppSelect from "@/components/AppSelect.vue";
-import AppInput from "@/components/AppInput.vue";
-import AppButton from "@/components/AppButton.vue";
+import AppModal from "@/components/Modal/AppModal.vue";
+import AppSelect from "@/components/Form/AppSelect.vue";
+import AppInput from "@/components/Form/AppInput.vue";
+import AppButton from "@/components/Button/AppButton.vue";
 
 export default {
     name: "TheSponsorsToStudentTableBody",

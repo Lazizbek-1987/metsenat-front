@@ -14,7 +14,7 @@
 
 <script>
 import {PencilSquareIcon, UserIcon, PlusIcon} from '@heroicons/vue/24/outline'
-import AppButton from "@/components/AppButton.vue";
+import AppButton from "@/components/Button/AppButton.vue";
 export default {
     name: "AppInfoCardHeader",
     components: {AppButton, PencilSquareIcon},

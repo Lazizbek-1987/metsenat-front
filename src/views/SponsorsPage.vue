@@ -50,30 +50,38 @@
 </template>
 
 <script>
-import {ChevronLeftIcon, ChevronRightIcon, EyeIcon} from '@heroicons/vue/24/outline'
-import AppPagination from "../components/AppPagination.vue";
-import AppSponsorsTableHead from "../components/AppSponsorsTableHead.vue";
-import AppSponsorsTableBody from "../components/AppSponsorsTableBody.vue";
-import TheNavbar from "@/components/TheNavbar.vue";
+import {ChevronLeftIcon, ChevronRightIcon, EyeIcon, PlusIcon} from '@heroicons/vue/24/outline'
+import AppPagination from "../components/Pagination/AppPagination.vue";
+import AppSponsorsTableHead from "../components/Sponsor/AppSponsorsTableHead.vue";
+import AppSponsorsTableBody from "../components/Sponsor/AppSponsorsTableBody.vue";
+import TheNavbar from "@/components/HeaderNavbar/TheNavbar.vue";
 import {mapActions, mapGetters} from "vuex";
+import AppButton from "@/components/Button/AppButton.vue";
+import AppModal from "@/components/Modal/AppModal.vue";
+import AppSelect from "@/components/Form/AppSelect.vue";
+import AppInput from "@/components/Form/AppInput.vue";
 
 export default {
     name: "SponsorsPage",
     components: {
+        AppInput,
+        AppSelect,
+        AppModal,
+        AppButton,
         TheNavbar,
         AppSponsorsTableBody,
         AppSponsorsTableHead,
         AppPagination,
         EyeIcon,
         ChevronLeftIcon,
-        ChevronRightIcon
+        ChevronRightIcon,
+        PlusIcon
     },
     computed: {
         ...mapGetters(['getSponsorsList', 'getSponsorsCount'])
     },
     data() {
-        return {
-        }
+        return {}
     },
     methods: {
         ...mapActions(['fetchSponsors'])

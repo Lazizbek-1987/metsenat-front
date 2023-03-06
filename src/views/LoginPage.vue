@@ -38,10 +38,10 @@
 
 <script>
 
-import TheLoginHeader from "../components/TheLoginHeader.vue";
-import AppInput from "../components/AppInput.vue";
-import AppButton from "../components/AppButton.vue";
-import TheCaptcha from "../components/TheCaptcha.vue";
+import TheLoginHeader from "../components/Login/TheLoginHeader.vue";
+import AppInput from "../components/Form/AppInput.vue";
+import AppButton from "../components/Button/AppButton.vue";
+import TheCaptcha from "../components/Login/TheCaptcha.vue";
 
 export default {
     name: "LoginPage",

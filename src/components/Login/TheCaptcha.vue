@@ -6,7 +6,7 @@
             <label for="check" class="text-[#000000] cursor-pointer">I’m not a robot</label>
         </div>
         <div class="">
-            <img src="../components/icons/captcha.svg" alt="" class="mx-auto">
+            <img src="../icons/captcha.svg" alt="" class="mx-auto">
             <p class="text-xs text-gray-300">reCAPTCHA</p>
             <p class="text-xs text-gray-300">Privacy - Terms</p>
         </div>

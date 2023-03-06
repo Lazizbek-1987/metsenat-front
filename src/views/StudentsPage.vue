@@ -53,11 +53,11 @@
 
 <script>
 import {ChevronLeftIcon, ChevronRightIcon, EyeIcon, PlusIcon} from '@heroicons/vue/24/outline'
-import AppPagination from "../components/AppPagination.vue";
-import AppStudentsTableHead from "../components/AppStudentsTableHead.vue";
-import AppStudentsTableBody from "../components/AppStudentsTableBody.vue";
-import AppButton from "../components/AppButton.vue";
-import TheNavbar from "../components/TheNavbar.vue";
+import AppPagination from "../components/Pagination/AppPagination.vue";
+import AppStudentsTableHead from "../components/Student/AppStudentsTableHead.vue";
+import AppStudentsTableBody from "../components/Student/AppStudentsTableBody.vue";
+import AppButton from "../components/Button/AppButton.vue";
+import TheNavbar from "../components/HeaderNavbar/TheNavbar.vue";
 import {mapActions, mapGetters} from "vuex";
 
 export default {

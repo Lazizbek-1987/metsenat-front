@@ -65,9 +65,9 @@
 
 <script>
 import {PlusIcon} from '@heroicons/vue/24/outline'
-import AppInput from "../components/AppInput.vue";
-import AppSelect from "../components/AppSelect.vue";
-import AppButton from "../components/AppButton.vue";
+import AppInput from "../components/Form/AppInput.vue";
+import AppSelect from "../components/Form/AppSelect.vue";
+import AppButton from "../components/Button/AppButton.vue";
 import AppGoBackHeader from "@/components/AppGoBackHeader.vue";
 import {mapActions, mapGetters} from "vuex";
 

@@ -13,7 +13,7 @@
         <td class="text-center rounded-r-lg">
             <router-link :to="link">
                 <img
-                    src="./icons/eye.svg"
+                    src="../icons/eye.svg"
                     class="text-primary w-5 h-5 mx-auto cursor-pointer hover:scale-125 duration-500"
                 />
             </router-link>

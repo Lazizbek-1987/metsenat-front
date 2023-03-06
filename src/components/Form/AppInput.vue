@@ -4,11 +4,12 @@
             <slot></slot>
         </label>
         <input
+            class="w-full px-4 py-2 border border-[#E0E7FF] bg-[#F9FAFF] focus:bg-white duration-500 outline-0 rounded-lg"
             :type="type"
             :placeholder="placeholder"
             :id="id"
-            :value="model"
-            class="w-full px-4 py-2 border border-[#E0E7FF] bg-[#F9FAFF] focus:bg-white duration-500 outline-0 rounded-lg"
+            :value="value"
+            @input="$emit('update:value', $event.target.value)"
         >
     </div>
 </template>
@@ -20,9 +21,9 @@ export default {
         type: {type: String, default: 'text'},
         placeholder: {type: String},
         id: {id: Number},
-        model: {type: [Number, String]},
-        v_model: {type: [Number, String]}
-    }
+        value: {type: [String, Number]}
+    },
+    emits: ['update:value']
 }
 </script>
 
