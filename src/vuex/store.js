@@ -3,13 +3,15 @@ import dashboard from "@/vuex/dashboard"
 import sponsor from "@/vuex/sponsor"
 import student from "@/vuex/student"
 import institute from "@/vuex/institute"
+import user from "@/vuex/user"
 
 export default createStore({
     modules: {
         dashboard,
         sponsor,
         student,
-        institute
+        institute,
+        user
     },
     state() {
         return {

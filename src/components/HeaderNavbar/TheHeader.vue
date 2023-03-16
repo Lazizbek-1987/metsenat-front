@@ -12,7 +12,10 @@
                         <img src="../icons/user.svg" alt="user-logo" class="">
                     </div>
                 </div>
-                <ArrowRightOnRectangleIcon class="w-8 h-8 text-gray-400 cursor-pointer hover:text-primary duration-500"/>
+                <ArrowRightOnRectangleIcon
+                    class="w-8 h-8 text-gray-400 cursor-pointer hover:text-primary duration-500"
+                    @click="logout"
+                />
             </div>
         </div>
 
@@ -25,7 +28,13 @@ import {ArrowRightOnRectangleIcon, UserIcon} from '@heroicons/vue/24/outline'
 
 export default {
     name: "TheHeader",
-    components: {ArrowRightOnRectangleIcon, UserIcon}
+    components: {ArrowRightOnRectangleIcon, UserIcon},
+    methods: {
+        logout() {
+            localStorage.removeItem('token')
+            this.$router.push('/login')
+        }
+    }
 }
 </script>
 
